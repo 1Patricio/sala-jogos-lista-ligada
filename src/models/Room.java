@@ -14,4 +14,17 @@ public class Room {
         this.next = null;
         this.previous = null;
     }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+    
 };
