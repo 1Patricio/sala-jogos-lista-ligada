@@ -1,5 +1,5 @@
 package models;
 
 public enum TypeRoom {
-    NORMAL, ARMADILHA, PREMIO, SAIDA
+    Normal, Trap, Award, Exit
 }
