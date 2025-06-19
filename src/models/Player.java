@@ -18,7 +18,7 @@ public class Player {
     }
 
     public void getRoom() {
-        System.out.println(room);
+        System.out.println(room.roomDescription);
     }
 
     public void getNameAndRoom() {
@@ -33,6 +33,10 @@ public class Player {
     }
 
     public void changingRoom(Labirinth laririnth, Room newRoom) {
+        if (newRoom == null) {
+            System.out.println("Error: newRoom is null");
+            return;
+        }
         room = newRoom;
         score += 1;
         switch (newRoom.roomType) {
@@ -45,7 +49,19 @@ public class Player {
                 trap(laririnth);
                 break;
             case Exit:
-                win();
+                int numbersVisitedRooms = 0;
+                for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+                    if (descriptionVisitedRooms[i] != null) {
+                        numbersVisitedRooms++;
+                    }
+                }
+                if (numbersVisitedRooms >= 10) {
+                    win();
+                } else {
+                    System.out.println("Você chegou a saída, mas ainda não visitou todas as salas");
+                    System.out.println("Voltando para o hub");
+                    goToHub(laririnth);
+                }
                 break;
             default:
                 break;
@@ -86,6 +102,7 @@ public class Player {
             System.out.println("You fell into a Trap! Score: " + score);
         } else {
             score = 0.00;
+            System.out.println("Você caiu em uma armadilha, mas não tem pontos o suficientes!");
             goToHub(labirinth);
         }
     }
@@ -132,7 +149,7 @@ public class Player {
         Room hub = labirinth.getHubRoom();
         if (hub != null) {
             this.room = hub;
-            System.out.println("You fell into a Trap! Returning to the hub room:: " + hub.getRoomDescription());
+            System.out.println("Returning to the hub room:: " + hub.getRoomDescription());
         } else {
             System.out.println("Hub not found!");
         }

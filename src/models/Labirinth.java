@@ -1,26 +1,27 @@
 package models;
 
-public class Labirinth {
+public class Labirinth<T> {
 
-    public class RoomKnot<T>{
-        public Room room;
-        public RoomKnot previous;
-        public RoomKnot next;
+    public class RoomKnot<T> {
+        public T room;
+        public RoomKnot<T> previous;
+        public RoomKnot<T> next;
 
-        public RoomKnot(Room room){
+        public RoomKnot(T room) {
             this.room = room;
             this.previous = null;
             this.next = null;
         }
     }
 
-    private RoomKnot startLabirinth;
-    private RoomKnot endLabirinth;
+    private RoomKnot<Room> startLabirinth;
+    private RoomKnot<Room> endLabirinth;
 
-    public Labirinth(){
+    public Labirinth() {
         this.startLabirinth = null;
         this.endLabirinth = null;
-        //implementar validação para que o labirinto não tenha menos que 10 salas, creio que seja necessário criar aqui
+        // implementar validação para que o labirinto não tenha menos que 10 salas,
+        // creio que seja necessário criar aqui
     }
 
     public void createRoom(Room room) {
@@ -40,7 +41,7 @@ public class Labirinth {
             System.out.println("Não há salas para visualização");
             return;
         }
-    
+
         RoomKnot current = startLabirinth;
         while (current != null) {
             System.out.print(current.room + " ");
@@ -49,21 +50,23 @@ public class Labirinth {
         System.out.println();
     }
 
-    //ou fazer uma função para validar o "tamanho" do labirinto à parte
+    // ou fazer uma função para validar o "tamanho" do labirinto à parte
 
     public void removeRoom(int roomNumber) {
-        if (startLabirinth == null) return;
+        if (startLabirinth == null)
+            return;
 
         RoomKnot<Room> current = startLabirinth;
         while (current != null) {
             if (current.room.roomNumber == roomNumber) {
                 if (current == startLabirinth) {
                     startLabirinth = current.next;
-                    if (startLabirinth != null) startLabirinth.previous = null;
-                } 
-				else if (current == endLabirinth) {
+                    if (startLabirinth != null)
+                        startLabirinth.previous = null;
+                } else if (current == endLabirinth) {
                     endLabirinth = current.previous;
-                    if (endLabirinth != null) endLabirinth.next = null;
+                    if (endLabirinth != null)
+                        endLabirinth.next = null;
                 } else {
                     current.previous.next = current.next;
                     current.next.previous = current.previous;
@@ -75,9 +78,9 @@ public class Labirinth {
     }
 
     public Room getHubRoom() {
-        RoomKnot current = startLabirinth;
+        RoomKnot<Room> current = startLabirinth;
         while (current != null) {
-            if (current.room.roomNumber == 0) {
+            if (current.room.getRoomNumber() == 0) {
                 return current.room;
             }
             current = current.next;
@@ -85,14 +88,27 @@ public class Labirinth {
         return null;
     }
 
-    public Room getRoomNumber(int number){
-        RoomKnot current = startLabirinth;
+    public Room getRoomNumber(int number) {
+        RoomKnot<Room> current = startLabirinth;
         while (current != null) {
-            if (current.room.roomNumber == number) {
+            if (current.room.getRoomNumber() == number) {
                 return current.room;
             }
             current = current.next;
         }
         return null;
+    }
+
+    public Room nextRoom(Room currentRoom) {
+        RoomKnot<Room> atual = startLabirinth;
+        while (atual != null) {
+            if (atual.room.roomNumber == currentRoom.roomNumber) {
+                return (atual.next != null) ? atual.next.room : null;
+            }
+            atual = atual.next;
+        }
+        if (currentRoom == null)
+            return null;
+        return currentRoom.next;
     }
 }

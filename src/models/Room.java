@@ -1,7 +1,5 @@
 package models;
 
-import models.Labirinth.RoomKnot;
-
 public class Room {
     public int roomNumber;
     public TypeRoom roomType;
@@ -9,7 +7,6 @@ public class Room {
     public Room next;
     public Room previous;
 
-    
     public Room(int roomNumber, TypeRoom roomType, String roomDescription) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -29,5 +26,5 @@ public class Room {
     public String getRoomDescription() {
         return roomDescription;
     }
-    
+
 };

@@ -39,7 +39,7 @@ public class App {
         // player.win();
 
         Scanner scanner = new Scanner(System.in);
-        Player player = new Player(null, room0);
+        Player player = new Player(null, room2);
 
         System.out.println("____Desafio do Labirinto____");
         System.out.println("1 - Iniciar");
@@ -52,6 +52,8 @@ public class App {
             String mensageName = (player.name == null) ? "1 - Inserir nome do jogador" : "1 - Editar nome do jogador";
             System.out.println(mensageName);
             System.out.println("2 - Mudar de Sala");
+            System.out.println("3 - Avançar de Sala");
+            System.out.println("4 - Sala atual do player1");
             System.out.println("9 - Sair");
             int optionGame = scanner.nextInt();
 
@@ -62,7 +64,17 @@ public class App {
                     player.name = name;
                     break;
                 case 2:
-                    player.changingRoom(labirinth, room2);
+                    player.changingRoom(labirinth, room9);
+                    break;
+
+                case 3:
+                    Room nextRoom = labirinth.nextRoom(player.room);
+                    player.changingRoom(labirinth, nextRoom);
+                    player.getRoom();
+                    break;
+
+                case 4:
+                    player.getRoom();
                     break;
                 case 9:
                     game = false;

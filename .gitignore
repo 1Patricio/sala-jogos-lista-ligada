@@ -1,0 +1,8 @@
+bin/App.class
+bin/models/Labirinth.class
+bin/models/Labirinth$RoomKnot.class
+bin/models/Player.class
+bin/models/Player$1.class
+bin/models/Room.class
+bin/models/TypeRoom.class
+bin
