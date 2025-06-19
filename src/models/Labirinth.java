@@ -109,4 +109,17 @@ public class Labirinth<T> {
             return null;
         return currentRoom.next;
     }
+
+    public Room previusRoom (Room currentRoom){
+        RoomKnot<Room> atual = endLabirinth;
+        while (atual != null) {
+            if (atual.room.roomNumber == currentRoom.roomNumber) {
+                return (atual.previous != null) ? atual.previous.room : null;
+            }
+            atual = atual.previous;
+        }
+        if (currentRoom == null)
+            return null;
+        return currentRoom.previous;
+    }
 }

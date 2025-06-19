@@ -14,11 +14,14 @@ public class Player {
         this.inventory = new String[10];
         this.score = 0.0;
         this.visitedrooms = 0;
-        this.descriptionVisitedRooms = new String[10];
+        this.descriptionVisitedRooms = new String[15];
     }
 
     public void getRoom() {
+        System.out.println();
+        System.out.println("====| ROOM |====");
         System.out.println(room.roomDescription);
+        System.out.println("Tipo: " + room.roomType);
     }
 
     public void getNameAndRoom() {
