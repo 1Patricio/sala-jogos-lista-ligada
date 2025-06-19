@@ -20,7 +20,6 @@ public class Labirinth {
     public Labirinth(){
         this.startLabirinth = null;
         this.endLabirinth = null;
-        //implementar validação para que o labirinto não tenha menos que 10 salas, creio que seja necessário criar aqui
     }
 
     public void createRoom(Room room) {
@@ -49,7 +48,6 @@ public class Labirinth {
         System.out.println();
     }
 
-    //ou fazer uma função para validar o "tamanho" do labirinto à parte
 
     public void removeRoom(int roomNumber) {
         if (startLabirinth == null) return;

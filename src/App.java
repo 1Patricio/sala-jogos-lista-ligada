@@ -24,7 +24,6 @@ public class App {
         Room room9 = new Room(8, TypeRoom.Trap, "Estátuas que disparam laser quando ativadas.");
         Room room10 = new Room(9, TypeRoom.Exit, "Porta rúnica que leva à saída da dungeon.");
 
-        List<Room> listRooms = new ArrayList<>();
 
         labirinth.createRoom(room1);
         labirinth.createRoom(room2);
@@ -36,17 +35,6 @@ public class App {
         labirinth.createRoom(room8);
         labirinth.createRoom(room9);
         labirinth.createRoom(room10);
-
-        listRooms.add(room1);
-        listRooms.add(room2);
-        listRooms.add(room3);
-        listRooms.add(room4);
-        listRooms.add(room5);
-        listRooms.add(room6);
-        listRooms.add(room7);
-        listRooms.add(room8);
-        listRooms.add(room9);
-        listRooms.add(room10);
 
         Scanner scanner = new Scanner(System.in);
         Player player = new Player(null, null);
@@ -85,23 +73,45 @@ public class App {
 
                         switch (choose.toUpperCase()) {
                             case "E":
-                                System.out.println(player.name + " entrou na sala " + room1.roomDescription + " por agora, está seguro, mas ainda há mais para progredir...");
+                                System.out.println(player.name + " entrou em: " + room1.roomDescription + " por agora, está seguro, mas ainda há mais para progredir...");
                                 player.room = room1;
                                 
                                 break;
                             case "A":
                                 System.out.println(player.name + " avança para a próxima sala, adentrando mais o labirinto");
-                                player.changingRoom(labirinth, chooserRooms(listRooms));
+                                player.changingRoom(labirinth, room2);
                                 break;
                             default:
                                 break;
                         }
 
                     }
-                    System.out.println("Ao adentrar mais a sala " + player.name + "encontra uma nova porta, e tem que tomar uma decisão:");
+                    System.out.println("Ao adentrar mais a sala, " + player.name + " encontra uma nova porta, e tem que tomar uma decisão:");
+                    System.out.println("____________________________");
+                    System.out.println("E - Entrar na sala");
+                    System.out.println("A - Avançar para próxima sala");
+                    System.out.println("R - Retornar à sala anterior");
+                    System.out.println("____________________________");
+                    String choose = scanner.next();
 
-
-                    
+                    switch(choose.toUpperCase()){
+                        case "E":
+                            System.out.println("Entrou numa nova sala");
+                            player.room = player.changingRoom(labirinth, room1.next);;
+                            System.out.println(player.room.roomDescription);
+                            break;
+                        case "A":
+                            System.out.println("Avançou para outra sala");
+                            player.room = chooserRooms(listRooms);
+                            System.out.println(player.room.roomDescription);
+                            break;
+                        case "R":
+                            System.out.println("Voltou uma sala");
+                            break;
+                        default:
+                            System.out.println("Está opção não é válida");
+                            break;
+                    }
                     break;
                 case 0:
                     game = false;
@@ -114,14 +124,5 @@ public class App {
         }
         scanner.close();
 
-    }
-
-    public static Room chooserRooms(List<Room> listRooms){
-
-        Random random = new Random();
-
-        int chooser = random.nextInt(listRooms.size());
-        
-        return listRooms.get(chooser);
     }
 }
