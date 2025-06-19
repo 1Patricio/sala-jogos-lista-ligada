@@ -35,6 +35,9 @@ public class App {
         // player.win();
 
         Scanner scanner = new Scanner(System.in);
+
+        Player player = new Player(null, room0);
+
         int option;
         String name;
 
@@ -43,17 +46,18 @@ public class App {
         System.out.println("2 - Sair");
         option = scanner.nextInt();
 
-        switch (option) {
+        while(true){
+            switch (option) {
             case 1:
                 System.out.println("Insira o nome do seu jogador:");
-                name = scanner.nextLine();
-                Player player = new Player(name, room0);
-                labirinth.showRooms();
-                break;
-        
+                name = scanner.next();
+                player.name = name;
+                break;   
+                     
             default:
                 System.out.println("Obrigado por jogar!");
                 break;
+        }
         }
     }
 }

@@ -1,7 +1,7 @@
 package models;
 
 public class Player {
-    private String name;
+    public String name;
     private String[] inventory;
     private Double score;
     public Room room;
