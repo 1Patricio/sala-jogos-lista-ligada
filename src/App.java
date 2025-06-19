@@ -97,12 +97,12 @@ public class App {
                     switch(choose.toUpperCase()){
                         case "E":
                             System.out.println("Entrou numa nova sala");
-                            player.room = player.changingRoom(labirinth, room1.next);;
+                            // player.room = player.changingRoom(labirinth, room1.next);
                             System.out.println(player.room.roomDescription);
                             break;
                         case "A":
                             System.out.println("Avançou para outra sala");
-                            player.room = chooserRooms(listRooms);
+                            // player.room = chooserRooms();
                             System.out.println(player.room.roomDescription);
                             break;
                         case "R":
