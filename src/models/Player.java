@@ -32,7 +32,7 @@ public class Player {
         }
     }
 
-    public void changingRoom(Room newRoom) {
+    public void changingRoom(Labirinth laririnth, Room newRoom) {
         room = newRoom;
         score += 1;
         switch (newRoom.roomType) {
@@ -42,7 +42,7 @@ public class Player {
                 award();
                 break;
             case Trap:
-                trap();
+                trap(laririnth);
                 break;
             case Exit:
                 win();
@@ -79,15 +79,14 @@ public class Player {
         System.out.println("Inventory is full. Cannot add item: " + item);
     }
 
-    public void trap() {
+    public void trap(Labirinth labirinth) {
         Double trap = Math.random() * 5;
         if (score > trap) {
             score -= trap;
             System.out.println("You fell into a Trap! Score: " + score);
         } else {
             score = 0.00;
-            room = room.getHubRoom();
-            System.out.println("You fell into a Trap! Returning to the room: " + room.roomDescription);
+            goToHub(labirinth);
         }
     }
 
@@ -126,6 +125,16 @@ public class Player {
             for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                 System.out.println("Room: " + descriptionVisitedRooms[i]);
             }
+        }
+    }
+
+    public void goToHub(Labirinth labirinth) {
+        Room hub = labirinth.getHubRoom();
+        if (hub != null) {
+            this.room = hub;
+            System.out.println("You fell into a Trap! Returning to the hub room:: " + hub.getRoomDescription());
+        } else {
+            System.out.println("Hub not found!");
         }
     }
 }

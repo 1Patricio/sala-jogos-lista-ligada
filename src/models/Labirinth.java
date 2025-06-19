@@ -2,7 +2,7 @@ package models;
 
 public class Labirinth {
 
-    public class RoomKnot<Room>{
+    public class RoomKnot<T>{
         public Room room;
         public RoomKnot previous;
         public RoomKnot next;
@@ -26,12 +26,12 @@ public class Labirinth {
     public void createRoom(Room room) {
         RoomKnot<Room> newKnot = new RoomKnot<>(room);
         if (startLabirinth == null) {
-        startLabirinth = newKnot;
-        endLabirinth = newKnot;
+            startLabirinth = newKnot;
+            endLabirinth = newKnot;
         } else {
-        endLabirinth.next = newKnot;
-        newKnot.previous = endLabirinth;
-        endLabirinth = newKnot;
+            endLabirinth.next = newKnot;
+            newKnot.previous = endLabirinth;
+            endLabirinth = newKnot;
         }
     }
 
@@ -74,5 +74,25 @@ public class Labirinth {
         }
     }
 
+    public Room getHubRoom() {
+        RoomKnot current = startLabirinth;
+        while (current != null) {
+            if (current.room.roomNumber == 0) {
+                return current.room;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public Room getRoomNumber(int number){
+        RoomKnot current = startLabirinth;
+        while (current != null) {
+            if (current.room.roomNumber == number) {
+                return current.room;
+            }
+            current = current.next;
+        }
+        return null;
+    }
 }
-    

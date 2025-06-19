@@ -27,7 +27,11 @@ public class App {
         labirinth.createRoom(room3);
         labirinth.createRoom(room4);
         labirinth.createRoom(room5);
-        
+        labirinth.createRoom(room6);
+        labirinth.createRoom(room7);
+        labirinth.createRoom(room8);
+        labirinth.createRoom(room9);
+
         // player.changingRoom(room1);
         // player.getNameAndRoom();
 
@@ -35,29 +39,40 @@ public class App {
         // player.win();
 
         Scanner scanner = new Scanner(System.in);
-
         Player player = new Player(null, room0);
-
-        int option;
-        String name;
 
         System.out.println("____Desafio do Labirinto____");
         System.out.println("1 - Iniciar");
         System.out.println("2 - Sair");
-        option = scanner.nextInt();
+        int option = scanner.nextInt();
+        boolean game = (option == 1) ? true : false;
 
-        while(true){
-            switch (option) {
-            case 1:
-                System.out.println("Insira o nome do seu jogador:");
-                name = scanner.next();
-                player.name = name;
-                break;   
-                     
-            default:
-                System.out.println("Obrigado por jogar!");
-                break;
+        while (game) {
+            System.out.println("Start Game");
+            String mensageName = (player.name == null) ? "1 - Inserir nome do jogador" : "1 - Editar nome do jogador";
+            System.out.println(mensageName);
+            System.out.println("2 - Mudar de Sala");
+            System.out.println("9 - Sair");
+            int optionGame = scanner.nextInt();
+
+            switch (optionGame) {
+                case 1:
+                    System.out.println("Insira o nome do seu jogador:");
+                    String name = scanner.next();
+                    player.name = name;
+                    break;
+                case 2:
+                    player.changingRoom(labirinth, room2);
+                    break;
+                case 9:
+                    game = false;
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+                    break;
+            }
         }
-        }
+        scanner.close();
+
     }
 }

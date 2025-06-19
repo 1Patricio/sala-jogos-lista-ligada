@@ -1,5 +1,7 @@
 package models;
 
+import models.Labirinth.RoomKnot;
+
 public class Room {
     public int roomNumber;
     public TypeRoom roomType;
@@ -14,20 +16,6 @@ public class Room {
         this.roomDescription = roomDescription;
         this.next = null;
         this.previous = null;
-    }
-
-    public Room getHubRoom(){
-        Room current = this;
-        while (current.previous != null) {
-            current = current.previous;
-        }
-        while (current != null) {
-            if (current.roomNumber == 1) {
-                return current;
-            }
-            current = current.next;
-        }
-        return null;
     }
 
     public int getRoomNumber() {
