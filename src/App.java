@@ -37,14 +37,18 @@ public class App {
         labirinth.createRoom(room10);
 
         Scanner scanner = new Scanner(System.in);
-        Player player = new Player(null, null);
+        Player player = new Player(null, room1);
 
 
         System.out.println("____Desafio do Labirinto____");
         System.out.println("1 - Iniciar");
         System.out.println("0 - Sair");
         int option = scanner.nextInt();
-        boolean game = (option == 1) ? true : false;
+        boolean game = false;
+        if(option == 1){
+            player.changingRoom(labirinth, room1);
+            game = true;
+        } 
 
         while (game) {
             System.out.println("Start Game");
@@ -70,6 +74,7 @@ public class App {
                     Room nextRoom = labirinth.nextRoom(player.room);
                     player.changingRoom(labirinth, nextRoom);
                     player.getRoom();
+                    game = player.win();
                     break;
 
                 case 4:

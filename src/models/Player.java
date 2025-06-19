@@ -13,7 +13,7 @@ public class Player {
         this.room = room;
         this.inventory = new String[10];
         this.score = 0.0;
-        this.visitedrooms = 1;
+        this.visitedrooms = 0;
         this.descriptionVisitedRooms = new String[10];
     }
 
@@ -43,10 +43,25 @@ public class Player {
             case Normal:
                 break;
             case Award:
-                award();
+                for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+                    if (descriptionVisitedRooms[newRoom.roomNumber] != newRoom.roomDescription) {
+                        descriptionVisitedRooms[newRoom.roomNumber] = newRoom.roomDescription;
+                        visitedrooms++;
+                        award();
+                        break;
+                    }
+                }
+
                 break;
             case Trap:
-                trap(laririnth);
+                for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+                    if (descriptionVisitedRooms[newRoom.roomNumber] != newRoom.roomDescription) {
+                        descriptionVisitedRooms[newRoom.roomNumber] = newRoom.roomDescription;
+                        visitedrooms++;
+                        trap(laririnth);
+                        break;
+                    }
+                }
                 break;
             case Exit:
                 int numbersVisitedRooms = 0;
@@ -55,7 +70,7 @@ public class Player {
                         numbersVisitedRooms++;
                     }
                 }
-                if (numbersVisitedRooms >= 10) {
+                if (numbersVisitedRooms >= 9) {
                     win();
                 } else {
                     System.out.println("Você chegou a saída, mas ainda não visitou todas as salas");
@@ -125,8 +140,10 @@ public class Player {
         }
     }
 
-    public void win() {
-        if (room.roomDescription == "Exit") {
+    public boolean win() {
+        boolean game = true;
+        if (room.roomType.name() == "Exit") {
+            game = false;
 
             System.out.println("Final Score: " + score);
             System.out.println("Inventory: ");
@@ -142,7 +159,9 @@ public class Player {
             for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                 System.out.println("Room: " + descriptionVisitedRooms[i]);
             }
+            return game;
         }
+        return game;
     }
 
     public void goToHub(Labirinth labirinth) {
