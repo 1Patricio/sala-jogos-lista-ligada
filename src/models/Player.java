@@ -6,6 +6,7 @@ public class Player {
     private Double score;
     public Room room;
     private int visitedrooms;
+    private String[] descriptionVisitedRooms;
 
     public Player(String name, Room room) {
         this.name = name;
@@ -13,6 +14,7 @@ public class Player {
         this.inventory = new String[10];
         this.score = 0.0;
         this.visitedrooms = 1;
+        this.descriptionVisitedRooms = new String[10];
     }
 
     public void getRoom() {
@@ -31,7 +33,6 @@ public class Player {
     }
 
     public void changingRoom(Room newRoom) {
-        visitedrooms++;
         room = newRoom;
         score += 1;
         switch (newRoom.roomType) {
@@ -48,6 +49,23 @@ public class Player {
                 break;
             default:
                 break;
+        }
+
+        boolean visited = false;
+        for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+            if (newRoom.getRoomDescription().equals(descriptionVisitedRooms[i])) {
+                visited = true;
+                break;
+            }
+        }
+        if (!visited) {
+            for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+                if (descriptionVisitedRooms[i] == null || descriptionVisitedRooms[i].isEmpty()) {
+                    descriptionVisitedRooms[i] = newRoom.getRoomDescription();
+                    visitedrooms++;
+                    break;
+                }
+            }
         }
     }
 
@@ -92,14 +110,22 @@ public class Player {
     }
 
     public void win() {
-        System.out.println("Final Score: " + score);
-        System.out.println("Inventory: ");
-        for (int i = 0; i < inventory.length; i++) {
-            int itemNumber = i+1;
-            if (inventory[i] != null) {
-                System.out.println("   Item: " + itemNumber + " - " + inventory[i]);
+        if (room.roomDescription == "Exit") {
+
+            System.out.println("Final Score: " + score);
+            System.out.println("Inventory: ");
+            for (int i = 0; i < inventory.length; i++) {
+                int itemNumber = i + 1;
+                if (inventory[i] != null) {
+                    System.out.println("   Item: " + itemNumber + " - " + inventory[i]);
+                }
+            }
+            System.out.println("Quantity Visited Rooms: " + visitedrooms);
+
+            System.out.println("Visited Rooms:");
+            for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+                System.out.println("Room: " + descriptionVisitedRooms[i]);
             }
         }
-        System.out.println("Visited Vooms: " + visitedrooms);
     }
 }
