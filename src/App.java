@@ -24,7 +24,6 @@ public class App {
         Room room9 = new Room(8, TypeRoom.Trap, "Estátuas que disparam laser quando ativadas.");
         Room room10 = new Room(9, TypeRoom.Exit, "Porta rúnica que leva à saída da dungeon.");
 
-        List<Room> listRooms = new ArrayList<>();
 
         labirinth.createRoom(room1);
         labirinth.createRoom(room2);
@@ -36,17 +35,6 @@ public class App {
         labirinth.createRoom(room8);
         labirinth.createRoom(room9);
         labirinth.createRoom(room10);
-
-        listRooms.add(room1);
-        listRooms.add(room2);
-        listRooms.add(room3);
-        listRooms.add(room4);
-        listRooms.add(room5);
-        listRooms.add(room6);
-        listRooms.add(room7);
-        listRooms.add(room8);
-        listRooms.add(room9);
-        listRooms.add(room10);
 
         Scanner scanner = new Scanner(System.in);
         Player player = new Player(null, null);
@@ -98,14 +86,5 @@ public class App {
         }
         scanner.close();
 
-    }
-
-    public static Room chooserRooms(List<Room> listRooms){
-
-        Random random = new Random();
-
-        int chooser = random.nextInt(listRooms.size());
-        
-        return listRooms.get(chooser);
     }
 }

@@ -20,8 +20,6 @@ public class Labirinth<T> {
     public Labirinth() {
         this.startLabirinth = null;
         this.endLabirinth = null;
-        // implementar validação para que o labirinto não tenha menos que 10 salas,
-        // creio que seja necessário criar aqui
     }
 
     public void createRoom(Room room) {
