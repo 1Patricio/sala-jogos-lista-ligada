@@ -50,12 +50,13 @@ public class App {
         while (formRoomGame) {
 
             System.out.println("  _| Criar Salas |_");
-            System.out.println("1 - AutoCriar 9 Salas");
-            System.out.println("");
+            System.out.println("1 - Criar uma sala");
+            if (autoCreate) System.out.println("2 - AutoCriar 9 Salas");
+            System.out.println("9 - Começar o jogo");
             int optionRoom = scanner.nextInt();
 
             switch (optionRoom) {
-                case 1:
+                case 2:
                     if (autoCreate) {
                     room1 = new Room(1, TypeRoom.Normal, "Entrada escura de pedra úmida.");
                     room2 = new Room(2, TypeRoom.Trap, "Chão falso com espinhos escondidos.");
@@ -77,13 +78,17 @@ public class App {
                     labirinth.createRoom(room9);
                     labirinth.createRoom(room10);
                     numbersRooms += 9;
+
+                    System.out.println("Salas criadas com sucesso!");
+
+                    clearConsole();
                     autoCreate = false;
                     }else{
                         System.out.println("Você já usou o seu auto create");
                     }
                     break;
 
-                case 2:
+                case 1:
                     System.out.println("Digite nome da sala: ");
                     String roomName = scanner.next();
                     System.out.println();
@@ -117,6 +122,7 @@ public class App {
                     Room newRoom = new Room(salasCriadosByUser, TypeRoom.valueOf(selectType), roomName);
 
                     labirinth.createRoom(newRoom);
+                    clearConsole();
                     System.out.println("Sala criada: " + roomName);
                     numbersRooms++;
                     break;
@@ -146,7 +152,12 @@ public class App {
                         clearConsole();
                         break;
                     case 2:
-                        player.changingRoom(labirinth, room1);
+                        Room newRoom = null;
+                        System.out.println("Escolha o número da sala que deseja se mover: ");
+                        int numberRoomChosen = scanner.nextInt();
+                        newRoom = labirinth.getRoomNumber(numberRoomChosen);
+                        player.changingRoom(labirinth, newRoom);
+                        player.getRoom();
                         clearConsole();
                         break;
 
