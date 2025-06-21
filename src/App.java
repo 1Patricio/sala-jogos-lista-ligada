@@ -14,7 +14,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         boolean autoCreate = true;
-        int salasCriadosByUser = 1000;
+        int salasCriadosByUser = 11;
 
         System.out.println("____Desafio do Labirinto____");
         System.out.println("1 - Iniciar");
@@ -119,6 +119,8 @@ public class App {
                             break;
                     }
 
+                    salasCriadosByUser++;
+
                     Room newRoom = new Room(salasCriadosByUser, TypeRoom.valueOf(selectType), roomName);
 
                     labirinth.createRoom(newRoom);
@@ -139,8 +141,9 @@ public class App {
                 System.out.println(mensageName);
                 System.out.println("2 - Mudar de Sala");
                 System.out.println("3 - Avançar de Sala");
-                System.out.println("4 - Voltar uma sala");
+                System.out.println("4 - Voltar uma Sala");
                 System.out.println("5 - Sala atual do Jogador");
+                System.out.println("6 - Listar todas as Salas");
                 System.out.println("9 - Sair");
                 int optionGame = scanner.nextInt();
 
@@ -176,6 +179,10 @@ public class App {
                         game = player.win();
                     case 5:
                         player.getRoom();
+                        break;
+
+                    case 6:
+                        labirinth.showRooms();
                         break;
                     case 0:
                         game = false;

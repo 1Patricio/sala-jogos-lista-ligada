@@ -42,7 +42,7 @@ public class Labirinth<T> {
 
         RoomKnot current = startLabirinth;
         while (current != null) {
-            System.out.print(current.room + " ");
+            System.out.print("[" + ((Room) current.room).getRoomNumber() + "] " + ((Room)current.room).getRoomDescription() + "\n");
             current = current.next;
         }
         System.out.println();

@@ -14,7 +14,7 @@ public class Player {
         this.inventory = new String[10];
         this.score = 0.0;
         this.visitedrooms = 0;
-        this.descriptionVisitedRooms = new String[15];
+        this.descriptionVisitedRooms = new String[100];
     }
 
     public void getRoom() {
@@ -160,7 +160,9 @@ public class Player {
 
             System.out.println("Visited Rooms:");
             for (int i = 0; i < descriptionVisitedRooms.length; i++) {
-                System.out.println("Room: " + descriptionVisitedRooms[i]);
+                if (descriptionVisitedRooms[i] != null) {
+                    System.out.println("Room: " + descriptionVisitedRooms[i]);
+                }
             }
             return game;
         }
