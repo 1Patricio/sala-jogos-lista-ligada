@@ -70,6 +70,8 @@ public class Player {
 
             case Exit:
                 int numbersVisitedRooms = 0;
+                descriptionVisitedRooms[newRoom.roomNumber] = newRoom.roomDescription;
+                visitedrooms++;
                 for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                     if (descriptionVisitedRooms[i] != null) {
                         numbersVisitedRooms++;

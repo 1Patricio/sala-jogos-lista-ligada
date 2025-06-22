@@ -34,7 +34,7 @@ public class App {
         Room room7 = new Room(6, TypeRoom.Normal, "Passagem estreita cheia de teias de aranha.");
         Room room8 = new Room(7, TypeRoom.Award, "Fonte mágica que restaura a vida.");
         Room room9 = new Room(8, TypeRoom.Trap, "Estátuas que disparam laser quando ativadas.");
-        Room room10 = new Room(100, TypeRoom.Exit, "Porta rúnica que leva à saída da dungeon.");
+        Room room10 = new Room(99, TypeRoom.Exit, "Porta rúnica que leva à saída da dungeon.");
 
         labirinth.createRoom(room0);
         labirinth.createRoom(room1);
@@ -45,7 +45,6 @@ public class App {
         labirinth.createRoom(room7);
         labirinth.createRoom(room8);
         labirinth.createRoom(room9);
-        labirinth.createRoom(room10);
 
         Player player = new Player(null, room0);
 
@@ -142,9 +141,11 @@ public class App {
             labirinth.removeRoom(6);
             labirinth.removeRoom(7);
             labirinth.removeRoom(8);
-            labirinth.removeRoom(9);
-            numbersRooms -= 9;
-        }
+         
+            numbersRooms -= 8;
+        } else {
+            labirinth.createRoom(room10);}
+
         while (game) {
             System.out.println("Start Game");
             String mensageName = (player.name == null) ? "1 - Inserir nome do jogador"
