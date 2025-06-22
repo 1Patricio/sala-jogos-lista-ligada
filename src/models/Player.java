@@ -19,7 +19,7 @@ public class Player {
 
     public void getRoom() {
         System.out.println();
-        System.out.println("====| ROOM |====");
+        System.out.println("====| Sala |====");
         System.out.println(room.roomDescription);
         System.out.println("Tipo: " + room.roomType);
     }
@@ -27,17 +27,17 @@ public class Player {
     public void getNameAndRoom() {
         System.out.println(name);
         if (room != null) {
-            System.out.println("Room: " + room.getRoomNumber());
-            System.out.println("Description: " + room.getRoomDescription());
+            System.out.println("Sala: " + room.getRoomNumber());
+            System.out.println("Informações da sala: " + room.getRoomDescription());
             System.out.println("Tipo: " + room.getRoomType());
         } else {
-            System.out.println("Room is null");
+            System.out.println("Erro de execução: Esta sala não existe");
         }
     }
 
     public void changingRoom(Labirinth laririnth, Room newRoom) {
         if (newRoom == null) {
-            System.out.println("Error: newRoom is null");
+            System.out.println("Erro de execução: Esta sala não existe");
             return;
         }
         room = newRoom;
@@ -112,14 +112,14 @@ public class Player {
                 return;
             }
         }
-        System.out.println("Inventory is full. Cannot add item: " + item);
+        System.out.println("Inventário cheio. Não foi possível colocar o item: " + item);
     }
 
     public void trap(Labirinth labirinth) {
         Double trap = Math.random() * 5;
         if (score > trap) {
             score -= trap;
-            System.out.println("You fell into a Trap! Score: " + score);
+            System.out.println("Você caiu em uma armadilha! Pontuação: " + score);
         } else {
             score = 0.00;
             System.out.println("Você caiu em uma armadilha, mas não tem pontos o suficientes!");
@@ -131,14 +131,14 @@ public class Player {
         int luck = (int) (Math.random() * 10);
         if (luck < 5) {
             score += luck;
-            System.out.println("Luck, receive " + luck + " points");
+            System.out.println("Que sorte! Você recebeu " + luck + " pontos");
         } else {
-            String[] awards = new String[] { "Axe", "Sword", "Shield", "Potion", "Helmet" };
+            String[] awards = new String[] { "Machado", "Espada", "Escudo", "Veneno", "Capacete" };
             for (int i = 0; i < inventory.length; i++) {
                 if (inventory[i] == null) {
                     addItem(awards[luck - 5]);
                     System.out
-                            .println("Luck, receive item " + inventory[i] + " invetory storage:  " + (i + 1));
+                            .println("Que sorte! Você recebeu um item " + inventory[i] + " Inventário atual:  " + (i + 1));
                     break;
                 }
             }
@@ -147,25 +147,25 @@ public class Player {
 
     public boolean win() {
         boolean game = true;
-        if (room.roomType.name() == "Exit") {
+        if (room.roomType.name() == "Saída") {
             game = false;
 
             System.out.println();
-            System.out.println("===| END GAME |===");
-            System.out.println("Final Score: " + score);
-            System.out.println("Inventory: ");
+            System.out.println("===| Final |===");
+            System.out.println("Pontuação Final: " + score);
+            System.out.println("Inventário: ");
             for (int i = 0; i < inventory.length; i++) {
                 int itemNumber = i + 1;
                 if (inventory[i] != null) {
                     System.out.println("   Item: " + itemNumber + " - " + inventory[i]);
                 }
             }
-            System.out.println("Quantity Visited Rooms: " + visitedrooms);
+            System.out.println("Quantidade de Salas Visitadas: " + visitedrooms);
 
-            System.out.println("Visited Rooms:");
+            System.out.println("Salas Visitadas:");
             for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                 if (descriptionVisitedRooms[i] != null) {
-                    System.out.println("Room: " + descriptionVisitedRooms[i]);
+                    System.out.println("Salas: " + descriptionVisitedRooms[i]);
                 }
             }
             return game;
@@ -175,12 +175,12 @@ public class Player {
 
     public void salasVisitadas() {
         System.out.println();
-        System.out.println("Quantity Visited Rooms: " + visitedrooms);
+        System.out.println("Quantidade de Salas Visitadas: " + visitedrooms);
 
-        System.out.println("Visited Rooms:");
+        System.out.println("Salas Visitadas:");
         for (int i = 0; i < descriptionVisitedRooms.length; i++) {
             if (descriptionVisitedRooms[i] != null) {
-                System.out.println("Room: " + descriptionVisitedRooms[i]);
+                System.out.println("Salas: " + descriptionVisitedRooms[i]);
             }
         }
         System.out.println();
@@ -190,9 +190,9 @@ public class Player {
         Room hub = labirinth.getHubRoom();
         if (hub != null) {
             this.room = hub;
-            System.out.println("Returning to the hub room:: " + hub.getRoomDescription());
+            System.out.println("Retornando à Sala Inicial: " + hub.getRoomDescription());
         } else {
-            System.out.println("Hub not found!");
+            System.out.println("Sala Inicial não encontrada!");
         }
     }
 }
