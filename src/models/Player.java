@@ -45,6 +45,7 @@ public class Player {
         switch (newRoom.roomType) {
             case Normal:
                 break;
+
             case Award:
                 for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                     if (descriptionVisitedRooms[newRoom.roomNumber] != newRoom.roomDescription) {
@@ -54,8 +55,8 @@ public class Player {
                         break;
                     }
                 }
-
                 break;
+
             case Trap:
                 for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                     if (descriptionVisitedRooms[newRoom.roomNumber] != newRoom.roomDescription) {
@@ -66,6 +67,7 @@ public class Player {
                     }
                 }
                 break;
+
             case Exit:
                 int numbersVisitedRooms = 0;
                 for (int i = 0; i < descriptionVisitedRooms.length; i++) {
@@ -73,14 +75,12 @@ public class Player {
                         numbersVisitedRooms++;
                     }
                 }
-                if (numbersVisitedRooms >= 9) {
-                    win();
-                } else {
+                if (numbersVisitedRooms <= 9) {
                     System.out.println("Você chegou a saída, mas ainda não visitou todas as salas");
-                    System.out.println("Voltando para o hub");
                     goToHub(laririnth);
                 }
                 break;
+
             default:
                 break;
         }
@@ -148,6 +148,8 @@ public class Player {
         if (room.roomType.name() == "Exit") {
             game = false;
 
+            System.out.println();
+            System.out.println("===| END GAME |===");
             System.out.println("Final Score: " + score);
             System.out.println("Inventory: ");
             for (int i = 0; i < inventory.length; i++) {
@@ -167,6 +169,19 @@ public class Player {
             return game;
         }
         return game;
+    }
+
+    public void salasVisitadas() {
+        System.out.println();
+        System.out.println("Quantity Visited Rooms: " + visitedrooms);
+
+        System.out.println("Visited Rooms:");
+        for (int i = 0; i < descriptionVisitedRooms.length; i++) {
+            if (descriptionVisitedRooms[i] != null) {
+                System.out.println("Room: " + descriptionVisitedRooms[i]);
+            }
+        }
+        System.out.println();
     }
 
     public void goToHub(Labirinth labirinth) {
