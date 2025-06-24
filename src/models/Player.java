@@ -37,7 +37,7 @@ public class Player {
 
     public void changingRoom(Labirinth laririnth, Room newRoom) {
         if (newRoom == null) {
-            System.out.println("Erro de execução: Esta sala não existe");
+            System.out.println("Erro de execução: Esta sala não existe (New Room is Nul)");
             return;
         }
         room = newRoom;
@@ -133,7 +133,7 @@ public class Player {
             score += luck;
             System.out.println("Que sorte! Você recebeu " + luck + " pontos");
         } else {
-            String[] awards = new String[] { "Machado", "Espada", "Escudo", "Veneno", "Capacete" };
+            String[] awards = new String[] { "Machado", "Espada", "Escudo", "Poção", "Capacete" };
             for (int i = 0; i < inventory.length; i++) {
                 if (inventory[i] == null) {
                     addItem(awards[luck - 5]);
@@ -165,7 +165,7 @@ public class Player {
             System.out.println("Salas Visitadas:");
             for (int i = 0; i < descriptionVisitedRooms.length; i++) {
                 if (descriptionVisitedRooms[i] != null) {
-                    System.out.println("Salas: " + descriptionVisitedRooms[i]);
+                    System.out.println("Sala: " + descriptionVisitedRooms[i]);
                 }
             }
             return game;
@@ -180,7 +180,7 @@ public class Player {
         System.out.println("Salas Visitadas:");
         for (int i = 0; i < descriptionVisitedRooms.length; i++) {
             if (descriptionVisitedRooms[i] != null) {
-                System.out.println("Salas: " + descriptionVisitedRooms[i]);
+                System.out.println("Sala: " + descriptionVisitedRooms[i]);
             }
         }
         System.out.println();
