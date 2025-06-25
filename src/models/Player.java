@@ -80,6 +80,8 @@ public class Player {
                 if (numbersVisitedRooms <= 9) {
                     System.out.println("Você chegou a saída, mas ainda não visitou todas as salas");
                     goToHub(laririnth);
+                } else {
+                    win();
                 }
                 break;
 

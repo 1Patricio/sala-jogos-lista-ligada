@@ -31,10 +31,10 @@ public class App {
         Room room4 = new Room(3, TypeRoom.Normal, "Corredor com tochas apagadas.");
         Room room5 = new Room(4, TypeRoom.Award, "Sala com um baú de ouro reluzente.");
         Room room6 = new Room(5, TypeRoom.Trap, "Armadilha de flechas nas paredes.");
-        Room room7 = new Room(6, TypeRoom.Normal, "Passagem estreita cheia de teias de aranha.");
+        Room room7 = new Room(6, TypeRoom.Exit, "Passagem estreita cheia de teias de aranha.");
         Room room8 = new Room(7, TypeRoom.Award, "Fonte mágica que restaura a vida.");
         Room room9 = new Room(8, TypeRoom.Trap, "Estátuas que disparam laser quando ativadas.");
-        Room room10 = new Room(99, TypeRoom.Exit, "Porta rúnica que leva à saída da dungeon.");
+        Room room10 = new Room(99, TypeRoom.Normal, "Porta rúnica que leva à saída da dungeon.");
 
         labirinth.createRoom(room0);
         labirinth.createRoom(room1);
